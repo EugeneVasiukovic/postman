@@ -1,0 +1,440 @@
+{
+	"info": {
+		"_postman_id": "96c5d049-8511-4767-8c10-6dc292a23d9f",
+		"name": "group_33_HW2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21444883"
+	},
+	"item": [
+		{
+			"name": "end point /first",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/first",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"first"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "end point /user_info_3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" var jsonData = pm.response.json(); \r",
+							" var reqdata = request.data;\r",
+							"\r",
+							" var res_json = jsonData.name;\r",
+							" var req_json = reqdata.name;\r",
+							"\r",
+							" console.log(res_json)\r",
+							" console.log(req_json)\r",
+							"\r",
+							"pm.test(\"EqlNameResReqhard\", function () {\r",
+							"pm.expect(res_json).to.eql(\"Evgeniy\");\r",
+							"});\r",
+							"\r",
+							" var respAgeJson = +jsonData.age;\r",
+							" var reqAgejson = +reqdata.age;\r",
+							"\r",
+							" console.log(typeof respAgeJson)\r",
+							" console.log(typeof reqAgejson)\r",
+							"\r",
+							"pm.test(\"EqlAgeResReqhard\", function () {\r",
+							"    pm.expect(respAgeJson).to.eql(28);\r",
+							"});\r",
+							"\r",
+							" var resSaljson = jsonData.salary;\r",
+							" var reqSaljson = +reqdata.salary;\r",
+							"\r",
+							" console.log(typeof resSaljson)\r",
+							" console.log(typeof reqSaljson)\r",
+							"\r",
+							"\r",
+							"pm.test(\"EqlSalaryResReqhard\", function () {\r",
+							"    pm.expect(resSaljson).to.eql(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"EqlNameResReq\", function () {\r",
+							"    pm.expect(res_json).to.eql(req_json);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"EqlAgeResReq\", function () {\r",
+							"    pm.expect(respAgeJson).to.eql(reqAgejson);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"EqlSalaryResReq\", function () {\r",
+							"    pm.expect(resSaljson).to.eql(reqSaljson);\r",
+							"});\r",
+							"\r",
+							"var familyJson = jsonData.family;\r",
+							"console.log(familyJson)\r",
+							"\r",
+							"pm.test(\"EqlSalaryRes_ReqMylti4\", function () {\r",
+							"    var familyResData = pm.response.json();\r",
+							"    var familyResJson = familyResData.family.u_salary_1_5_year;\r",
+							"    var multiSalreq = reqSaljson * 4;\r",
+							"    pm.expect(familyResJson).to.eql(multiSalreq);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Evgeniy",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "28",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "1000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/user_info_3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user_info_3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "end point /object_info_3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" var resdata = pm.response.json();\r",
+							" var reqdata = pm.request.url.query.toObject();\r",
+							"\r",
+							" var resNameJson = resdata.name;\r",
+							" var reqNameJson = reqdata.name;\r",
+							"\r",
+							" console.log(typeof resNameJson)\r",
+							" console.log(typeof reqNameJson)\r",
+							"\r",
+							"pm.test(\"EqlReSandReqName\", function () {\r",
+							"    pm.expect(resNameJson).to.eql(reqNameJson);\r",
+							"});\r",
+							"\r",
+							"var resAgejson = resdata.age;\r",
+							"var reqAgejson = reqdata.age;\r",
+							"\r",
+							"pm.test(\"EqlReSandReqAge\",function (){\r",
+							"    pm.expect(resAgejson).to.eql(reqAgejson);\r",
+							"})\r",
+							"\r",
+							"var resSaljson = resdata.salary;\r",
+							"var reqSaljson = +reqdata.salary;\r",
+							"\r",
+							"console.log(typeof reqSaljson)\r",
+							"\r",
+							"pm.test(\"EqlReSandReqSal\",function (){\r",
+							"    pm.expect(resSaljson).to.eql(reqSaljson)\r",
+							"})\r",
+							"\r",
+							"var famResjson = resdata.family;\r",
+							"var famPetResjson = famResjson.pets.dog;\r",
+							"console.log(famResjson)\r",
+							"\r",
+							"pm.test(\"EqlPetName\", function (){\r",
+							"    pm.expect(famPetResjson).to.have.property('name');\r",
+							"})\r",
+							"\r",
+							"pm.test(\"EqlPetAge\", function (){\r",
+							"    pm.expect(famPetResjson).to.have.property('age');\r",
+							"})\r",
+							"\r",
+							"pm.test(\"EqlPetResName\", function (){\r",
+							"    pm.expect(famPetResjson.name).to.eql('Luky');\r",
+							"})\r",
+							"\r",
+							"pm.test(\"EqlPetResAge\", function (){\r",
+							"    pm.expect(famPetResjson.age).to.eql(4);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/object_info_3?name=Evgeniy&age=28&salary=1000",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"object_info_3"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Evgeniy"
+						},
+						{
+							"key": "age",
+							"value": "28"
+						},
+						{
+							"key": "salary",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "end_point /object_info_4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var reqdata = pm.request.url.query.toObject();\r",
+							"var resdata = pm.response.json();\r",
+							"\r",
+							"var reqNamejson = reqdata.name;\r",
+							"var resNamejson = resdata.name;\r",
+							"\r",
+							"console.log(reqNamejson)\r",
+							"console.log(resNamejson)\r",
+							"\r",
+							"pm.test(\"EqlNameReSandReq\", function(){\r",
+							"    pm.expect(resNamejson).to.eql(reqNamejson);\r",
+							"})\r",
+							"\r",
+							"var reqAgejson = +reqdata.age;\r",
+							"var resAgejson = resdata.age;\r",
+							"\r",
+							"pm.test(\"EqlAgeReSandReq\", function(){\r",
+							"    pm.expect(resAgejson).to.eql(reqAgejson);\r",
+							"})\r",
+							"\r",
+							"var reqSaljson = +reqdata.salary;\r",
+							"var resSaljson = resdata.salary;\r",
+							"\r",
+							"console.log(reqSaljson)\r",
+							"console.log(resSaljson)\r",
+							"console.log(+resSaljson[0])\r",
+							"console.log(+resSaljson[1])\r",
+							"console.log(+resSaljson[2])\r",
+							"\r",
+							"pm.test(\"EqlResSal[0]andReqSal\", function(){\r",
+							"    pm.expect(resSaljson[0]).to.eql(reqSaljson)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"EqlResSal[1]andReqSal\", function(){\r",
+							"    var multReqSaljson = reqSaljson * 2;\r",
+							"    pm.expect(+resSaljson[1]).to.eql(multReqSaljson);\r",
+							"} )\r",
+							"\r",
+							"pm.test(\"EqlResSal[2]andReqSal\", function(){\r",
+							"    var multReqSaljson = reqSaljson * 3;\r",
+							"    pm.expect(+resSaljson[2]).to.eql(multReqSaljson);\r",
+							"} )\r",
+							"\r",
+							"\r",
+							"pm.environment.set(\"name\",resNamejson);\r",
+							"pm.environment.set(\"age\",resAgejson);\r",
+							"pm.environment.set(\"salary\", resSaljson[0]);\r",
+							"\r",
+							"for(var i = 0; i<1;i++ ){\r",
+							"    console.log(resSaljson[0]);\r",
+							"    console.log(+resSaljson[1]);\r",
+							"    console.log(+resSaljson[2]); \r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/object_info_4?name=Evgeniy&age=28&salary=1000",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"object_info_4"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Evgeniy"
+						},
+						{
+							"key": "age",
+							"value": "28"
+						},
+						{
+							"key": "salary",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "end point /user_info_2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var resJsonData = pm.response.json();\r",
+							"var reqJsonData = request.data;\r",
+							"\r",
+							"pm.test(\"ChekStQaSal\", function(){\r",
+							"    pm.expect(resJsonData).to.have.property('start_qa_salary')\r",
+							"})\r",
+							"\r",
+							"pm.test(\"ChekJun+QaSal\", function(){\r",
+							"    pm.expect(resJsonData).to.have.property('qa_salary_after_6_months')\r",
+							"})\r",
+							"\r",
+							"pm.test(\"ChekMidQaSal\", function(){\r",
+							"    pm.expect(resJsonData).to.have.property('qa_salary_after_12_months')\r",
+							"})\r",
+							"\r",
+							"pm.test(\"ChekMid+QaSal\", function(){\r",
+							"    pm.expect(resJsonData).to.have.property('qa_salary_after_1.5_year')\r",
+							"})\r",
+							"\r",
+							"pm.test(\"ChekSinQaSal\", function(){\r",
+							"    pm.expect(resJsonData).to.have.property('qa_salary_after_3.5_years')\r",
+							"})\r",
+							"\r",
+							"pm.test(\"ChekKeyPerson\", function(){\r",
+							"    pm.expect(resJsonData).to.have.property('person')\r",
+							"})\r",
+							"\r",
+							"pm.test(\"EqlStQaSaLandSal\", function(){\r",
+							"    pm.expect(resJsonData.start_qa_salary).to.eql(+reqJsonData.salary)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"EqlJunQaSaLandSal\", function(){\r",
+							"    var multireqjsonjunSal = (+reqJsonData.salary)*2;\r",
+							"    pm.expect(resJsonData.qa_salary_after_6_months).to.eql(multireqjsonjunSal)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"EqlMidQaSaLandSal\", function(){\r",
+							"     var multireqjsonMidSal = (+reqJsonData.salary)*2.7;\r",
+							"    pm.expect(resJsonData.qa_salary_after_12_months).to.eql(multireqjsonMidSal)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"EqlMid+QaSaLandSal\", function(){\r",
+							"     var multireqjsonMidPlSal = (+reqJsonData.salary)*3.3;\r",
+							"    pm.expect(resJsonData['qa_salary_after_1.5_year']).to.eql(multireqjsonMidPlSal)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"EqlSinQaSaLandSal\", function(){\r",
+							"    var multireqjsonSinSal = (+reqJsonData.salary)*3.8;\r",
+							"    pm.expect(resJsonData['qa_salary_after_3.5_years']).to.eql(multireqjsonSinSal)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"EqlPersoUnameAndReq\", function(){\r",
+							"    pm.expect(resJsonData.person.u_name[0]).to.eql(reqJsonData.name)\r",
+							"})\r",
+							"pm.test(\"EqlResonAgeAndReq\",function(){\r",
+							"    pm.expect(resJsonData.person.u_age).to.eql(+reqJsonData.age);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"EqlPersonSal5YersAndSalMulti\",function(){\r",
+							"    var multireqjsonLider = (+reqJsonData.salary)*4.2;\r",
+							"    pm.expect(resJsonData.person.u_salary_5_years).to.eql(multireqjsonLider);\r",
+							"})\r",
+							"var person = (Object.keys(resJsonData.person));\r",
+							"\r",
+							"for(var i = 0; i < 3; i++){\r",
+							"    console.log(person[i]);\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/user_info_2",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user_info_2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "name",
+			"value": ""
+		},
+		{
+			"key": "age",
+			"value": ""
+		},
+		{
+			"key": "salary",
+			"value": ""
+		}
+	]
+}
