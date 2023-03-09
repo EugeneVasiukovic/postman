@@ -8,6 +8,22 @@
 	"item": [
 		{
 			"name": "end point /first",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var resdata = pm.response.text();\r",
+							"\r",
+							"pm.test(\"EqlStringDataAndRes\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(resdata);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -269,10 +285,9 @@
 							"pm.environment.set(\"age\",resAgejson);\r",
 							"pm.environment.set(\"salary\", resSaljson[0]);\r",
 							"\r",
-							"for(var i = 0; i<1;i++ ){\r",
-							"    console.log(resSaljson[0]);\r",
-							"    console.log(+resSaljson[1]);\r",
-							"    console.log(+resSaljson[2]); \r",
+							"for(var i = 0; i<3;i++ ){\r",
+							"    console.log(+resSaljson[i]);\r",
+							" \r",
 							"}"
 						],
 						"type": "text/javascript"
