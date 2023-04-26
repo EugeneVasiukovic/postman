@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "dd15f0a9-e00b-46ee-b840-032d8995161d",
+		"name": "Test telegram cheak",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21444883",
+		"_collection_link": "https://martian-astronaut-956526.postman.co/workspace/Team-Workspace~710c94ff-b067-4d88-8919-c7eb9532614e/collection/21444883-dd15f0a9-e00b-46ee-b840-032d8995161d?action=share&creator=21444883&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "https://api.telegram.org/bot send photo and message",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.telegram.org/bot{{token}}/sendphoto?chat_id=670522132&photo=https://yandex.by/images/search?from=tabbar%26img_url=http%3A%2F%2Fcs14.pikabu.ru%2Fpost_img%2F2022%2F07%2F05%2F10%2Fog_og_1657039380282031561.jpg%26lr=157%26pos=1%26rpt=simage%26text=qa&caption=26 ноября в 19:00 по Москве приглашаем всех неравнодушных на бесплатный Product Quality\nMeetup! Митап пройдет онлайн на площадке Zoom.\nОрганизаторы: Test IT и Иннополис.\nПоговорим о построении процессов управления качеством и особенностях взаимодействия продакт-менеджеров и QA-инженеров в работе",
+					"protocol": "https",
+					"host": [
+						"api",
+						"telegram",
+						"org"
+					],
+					"path": [
+						"bot{{token}}",
+						"sendphoto"
+					],
+					"query": [
+						{
+							"key": "chat_id",
+							"value": "670522132"
+						},
+						{
+							"key": "photo",
+							"value": "https://yandex.by/images/search?from=tabbar&img_url=http%3A%2F%2Fcs14.pikabu.ru%2Fpost_img%2F2022%2F07%2F05%2F10%2Fog_og_1657039380282031561.jpg&lr=157&pos=1&rpt=simage&text=qa"
+						},
+						{
+							"key": "caption",
+							"value": "26 ноября в 19:00 по Москве приглашаем всех неравнодушных на бесплатный Product Quality\nMeetup! Митап пройдет онлайн на площадке Zoom.\nОрганизаторы: Test IT и Иннополис.\nПоговорим о построении процессов управления качеством и особенностях взаимодействия продакт-менеджеров и QA-инженеров в работе"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.telegram.org/bot send PDF",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "chat_id",
+							"value": "670522132",
+							"type": "text"
+						},
+						{
+							"key": "document",
+							"type": "file",
+							"src": "/C:/Users/yvasi/Downloads/Telegram Desktop/Playlist.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.telegram.org/bot{{token}}/senddocument",
+					"protocol": "https",
+					"host": [
+						"api",
+						"telegram",
+						"org"
+					],
+					"path": [
+						"bot{{token}}",
+						"senddocument"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.telegram.org/bot send Video",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "chat_id",
+							"value": "670522132",
+							"type": "text"
+						},
+						{
+							"key": "video",
+							"type": "file",
+							"src": "/C:/Users/yvasi/Downloads/babka-pokupaet-kofe-za-36-griven_(VIDEOMIN.ORG).mp4"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.telegram.org/bot{{token}}/sendvideo",
+					"protocol": "https",
+					"host": [
+						"api",
+						"telegram",
+						"org"
+					],
+					"path": [
+						"bot{{token}}",
+						"sendvideo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.telegram.org/bot sendzVideo Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.telegram.org/bot{{token}}/senddocument?chat_id=670522132&document=https://drive.google.com/file/d/1BeYPLUA_pzjb_sPtjPEFZPpOrWwH7R-i/view?usp=share_link",
+					"protocol": "https",
+					"host": [
+						"api",
+						"telegram",
+						"org"
+					],
+					"path": [
+						"bot{{token}}",
+						"senddocument"
+					],
+					"query": [
+						{
+							"key": "chat_id",
+							"value": "670522132"
+						},
+						{
+							"key": "document",
+							"value": "https://drive.google.com/file/d/1BeYPLUA_pzjb_sPtjPEFZPpOrWwH7R-i/view?usp=share_link"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
